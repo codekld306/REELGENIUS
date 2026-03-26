@@ -10,334 +10,261 @@
             --bg: #030303;
             --surface: #0a0a0a;
             --accent: #ff4e00;
-            --accent-glow: rgba(255, 78, 0, 0.4);
             --text-main: #ffffff;
             --text-dim: #888888;
             --border: rgba(255, 255, 255, 0.1);
             --input-bg: rgba(255, 255, 255, 0.03);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-            -webkit-font-smoothing: antialiased;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
 
-        body {
-            background-color: var(--bg);
-            color: var(--text-main);
-            overflow-x: hidden;
-            min-height: 100vh;
-        }
+        body { background-color: var(--bg); color: var(--text-main); overflow-x: hidden; min-height: 100vh; }
 
-        #hero-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.3;
-        }
+        #hero-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.3; }
 
         nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 25px 6%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--border);
-            background: rgba(3, 3, 3, 0.7);
+            position: fixed; top: 0; width: 100%; padding: 25px 6%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border); background: rgba(3,3,3,0.7);
         }
 
-        .logo {
-            font-weight: 900;
-            font-size: 1.4rem;
-            letter-spacing: -1px;
-            text-transform: uppercase;
-            text-decoration: none;
-            color: white;
-        }
-
+        .logo { font-weight: 900; font-size: 1.4rem; letter-spacing: -1px; text-transform: uppercase; text-decoration: none; color: white; }
         .logo span { color: var(--accent); }
 
-        .container {
-            max-width: 700px;
-            margin: 140px auto 100px;
-            padding: 0 5%;
-            position: relative;
-            z-index: 2;
-        }
+        .container { max-width: 700px; margin: 140px auto 100px; padding: 0 5%; position: relative; z-index: 2; }
 
-        .header-box {
-            text-align: center;
-            margin-bottom: 50px;
-        }
+        .header-box { text-align: center; margin-bottom: 50px; }
 
-        .tag {
-            color: var(--accent);
-            text-transform: uppercase;
-            font-weight: 700;
-            font-size: 0.8rem;
-            letter-spacing: 3px;
-            margin-bottom: 15px;
-            display: block;
-        }
+        .tag { color: var(--accent); text-transform: uppercase; font-weight: 700; font-size: 0.8rem; letter-spacing: 3px; margin-bottom: 15px; display: block; }
 
-        h1 {
-            font-size: clamp(2.2rem, 5vw, 3.5rem);
-            font-weight: 900;
-            letter-spacing: -2px;
-            line-height: 1.1;
-        }
+        h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 900; letter-spacing: -2px; line-height: 1.1; }
 
-        .custom-form {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            padding: 40px;
-            border-radius: 32px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-        }
+        .custom-form { background: var(--surface); border: 1px solid var(--border); padding: 40px; border-radius: 32px; box-shadow: 0 30px 60px rgba(0,0,0,0.5); }
 
-        .form-group {
-            margin-bottom: 25px;
-        }
+        .form-group { margin-bottom: 25px; }
 
-        label {
-            display: block;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text-dim);
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+        label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--text-dim); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
 
         input, textarea {
-            width: 100%;
-            background: var(--input-bg);
-            border: 1px solid var(--border);
-            padding: 16px 20px;
-            border-radius: 12px;
-            color: white;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            outline: none;
+            width: 100%; background: var(--input-bg); border: 1px solid var(--border);
+            padding: 16px 20px; border-radius: 12px; color: white; font-size: 1rem;
+            transition: all 0.3s ease; outline: none;
         }
 
         input:focus, textarea:focus {
-            border-color: var(--accent);
-            background: rgba(255, 78, 0, 0.05);
-            box-shadow: 0 0 20px rgba(255, 78, 0, 0.1);
+            border-color: var(--accent); background: rgba(255,78,0,0.05);
+            box-shadow: 0 0 20px rgba(255,78,0,0.1);
         }
 
-        textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
+        textarea { resize: vertical; min-height: 120px; }
 
         .submit-btn {
-            width: 100%;
-            padding: 20px;
-            background: var(--accent);
-            color: white;
-            border: none;
-            border-radius: 14px;
-            font-size: 1rem;
-            font-weight: 800;
-            cursor: pointer;
-            transition: 0.3s;
-            margin-top: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            width: 100%; padding: 20px; background: var(--accent); color: white;
+            border: none; border-radius: 14px; font-size: 1rem; font-weight: 800;
+            cursor: pointer; transition: 0.3s; margin-top: 10px;
+            text-transform: uppercase; letter-spacing: 1px;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
         }
 
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(255, 78, 0, 0.3);
+        .submit-btn:hover:not(:disabled) { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(255,78,0,0.3); }
+        .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+        .spinner {
+            display: none; width: 20px; height: 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top-color: white; border-radius: 50%;
+            animation: spin 0.7s linear infinite;
         }
+        @keyframes spin { to { transform: rotate(360deg); } }
 
         #success-msg {
-            display: none;
-            text-align: center;
-            padding: 60px 20px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 32px;
+            display: none; text-align: center; padding: 60px 20px;
+            background: var(--surface); border: 1px solid var(--border); border-radius: 32px;
         }
+        #success-msg h2 { color: var(--accent); margin-bottom: 15px; font-size: 2rem; font-weight: 900; }
 
-        #success-msg h2 {
-            color: var(--accent);
-            margin-bottom: 15px;
-            font-size: 2rem;
-            font-weight: 900;
-        }
+        footer { padding: 60px 6%; text-align: center; color: var(--text-dim); font-size: 0.75rem; }
 
-        footer {
-            padding: 60px 6%;
-            text-align: center;
-            color: var(--text-dim);
-            font-size: 0.75rem;
-        }
-
-        @media (max-width: 600px) {
-            .custom-form { padding: 30px 20px; }
-        }
+        @media (max-width: 600px) { .custom-form { padding: 30px 20px; } }
     </style>
 </head>
 <body>
 
-    <canvas id="hero-canvas"></canvas>
+<canvas id="hero-canvas"></canvas>
 
-    <nav>
-        <a href="index.html" class="logo">REEL<span>GENIUS</span></a>
-    </nav>
+<nav>
+    <a href="index.html" class="logo">REEL<span>GENIUS</span></a>
+</nav>
 
-    <script>
-        // Global state must be defined early to prevent ReferenceErrors in the iframe
-        var submitted = false;
-
-        function showSuccess() {
-            const form = document.getElementById('trial-form');
-            const header = document.getElementById('form-header');
-            const success = document.getElementById('success-msg');
-            
-            if (form) form.style.display = 'none';
-            if (header) header.style.display = 'none';
-            if (success) success.style.display = 'block';
-            window.scrollTo({top: 0, behavior: 'smooth'});
-        }
-    </script>
-
-    <div class="container">
-        <div class="header-box" id="form-header">
-            <span class="tag">Onboarding</span>
-            <h1>START YOUR TRIAL</h1>
-            <p style="color: var(--text-dim); margin-top: 15px;">Fill out the brief below. Team will contact you within 24 Hours.</p>
-        </div>
-
-        <!-- Silent Submission Handler -->
-        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(typeof submitted !== 'undefined' && submitted) {showSuccess();}"></iframe>
-
-        <!--
-            FIXED ENTRY IDs — extracted from the live Google Form source:
-            entry.1370308255  = your email
-            entry.1404889928  = WhatsApp
-            entry.1293454143  = Instagram / YouTube / TikTok link
-            entry.2146829527  = Project Details
-            entry.482859963   = Footage Link
-        -->
-        <form id="trial-form" 
-              class="custom-form" 
-              action="https://docs.google.com/forms/d/e/1FAIpQLSd_sMzmw6yLDzMghe0c5veaEEkB9silpLrvLEJxQwk5nVsIfw/formResponse" 
-              method="post" 
-              target="hidden_iframe" 
-              onsubmit="submitted=true;">
-
-            <!-- Email: entry.1370308255 -->
-            <div class="form-group">
-                <label>Email Address</label>
-                <input type="email" name="entry.1370308255" placeholder="you@example.com" required>
-            </div>
-
-            <!-- WhatsApp: entry.1404889928 -->
-            <div class="form-group">
-                <label>WhatsApp Number</label>
-                <input type="tel" name="entry.1404889928" placeholder="+1 (555) 000-0000" required>
-            </div>
-
-            <!-- Social Media: entry.1293454143 -->
-            <div class="form-group">
-                <label>Social Media Link (IG/YT/TikTok)</label>
-                <input type="url" name="entry.1293454143" placeholder="https://instagram.com/yourhandle" required>
-            </div>
-
-            <!-- Project Details: entry.2146829527 -->
-            <div class="form-group">
-                <label>Project Details / Reference Style</label>
-                <textarea name="entry.2146829527" placeholder="Describe the style you want (e.g. Hormozi-style, Minimalist, Documentary)..." required></textarea>
-            </div>
-
-            <!-- Footage Link: entry.482859963 -->
-            <div class="form-group">
-                <label>Footage Link (Drive/Dropbox/WeTransfer)</label>
-                <input type="url" name="entry.482859963" placeholder="Link to your raw files" required>
-            </div>
-
-            <button type="submit" class="submit-btn">Send Application</button>
-        </form>
-
-        <div id="success-msg">
-            <div style="background: var(--accent); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 30px;">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            </div>
-            <h2>Got it!</h2>
-            <p style="color: var(--text-dim); line-height: 1.6; max-width: 400px; margin: 0 auto 30px;">We've received your brief. A lead editor will reach out on WhatsApp shortly to confirm your footage.</p>
-            <a href="index.html" style="display: inline-block; padding: 15px 30px; background: rgba(255,255,255,0.05); color: white; text-decoration: none; border-radius: 12px; font-weight: 700; transition: 0.3s; border: 1px solid var(--border);">Back to Home</a>
-        </div>
+<div class="container">
+    <div class="header-box" id="form-header">
+        <span class="tag">Onboarding</span>
+        <h1>START YOUR TRIAL</h1>
+        <p style="color: var(--text-dim); margin-top: 15px;">Fill out the brief below. Team will contact you within 24 Hours.</p>
     </div>
 
-    <footer>
-        <p>&copy; 2026 REEL GENIUS. PREMIUM VIDEO PARTNER.</p>
-    </footer>
+    <form id="trial-form" class="custom-form">
 
-    <script>
-        // Particle Background Logic
-        const canvas = document.getElementById('hero-canvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
+        <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" id="f-email" placeholder="you@example.com" required>
+        </div>
 
-        function resize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+        <div class="form-group">
+            <label>WhatsApp Number</label>
+            <input type="tel" id="f-whatsapp" placeholder="+1 (555) 000-0000" required>
+        </div>
+
+        <div class="form-group">
+            <label>Social Media Link (IG/YT/TikTok)</label>
+            <input type="url" id="f-social" placeholder="https://instagram.com/yourhandle" required>
+        </div>
+
+        <div class="form-group">
+            <label>Project Details / Reference Style</label>
+            <textarea id="f-project" placeholder="Describe the style you want (e.g. Hormozi-style, Minimalist, Documentary)..." required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Footage Link (Drive/Dropbox/WeTransfer)</label>
+            <input type="url" id="f-footage" placeholder="Link to your raw files" required>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submit-btn">
+            <span id="btn-text">Send Application</span>
+            <div class="spinner" id="spinner"></div>
+        </button>
+
+    </form>
+
+    <div id="success-msg">
+        <div style="background: var(--accent); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 30px;">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </div>
+        <h2>Got it!</h2>
+        <p style="color: var(--text-dim); line-height: 1.6; max-width: 400px; margin: 0 auto 30px;">We've received your brief. A lead editor will reach out on WhatsApp shortly to confirm your footage.</p>
+        <a href="index.html" style="display: inline-block; padding: 15px 30px; background: rgba(255,255,255,0.05); color: white; text-decoration: none; border-radius: 12px; font-weight: 700; transition: 0.3s; border: 1px solid var(--border);">Back to Home</a>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2026 REEL GENIUS. PREMIUM VIDEO PARTNER.</p>
+</footer>
+
+<script>
+    // ── FORM SUBMISSION ──────────────────────────────────────────────────────────
+    // Google Forms blocks cross-origin reads (CORS), but the POST data DOES reach
+    // Google when sent with mode:'no-cors'. The response is opaque — we simply
+    // show the success screen after the fetch resolves (no response reading needed).
+
+    const FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSd_sMzmw6yLDzMghe0c5veaEEkB9silpLrvLEJxQwk5nVsIfw/formResponse';
+
+    // Entry IDs from live Google Form source (FB_PUBLIC_LOAD_DATA_ block)
+    const FIELDS = {
+        email:    'entry.1370308255',   // "your email"
+        whatsapp: 'entry.1404889928',   // "WhatsApp"
+        social:   'entry.1293454143',   // "Instagram / YouTube / TikTok link"
+        project:  'entry.2146829527',   // "Project Details"
+        footage:  'entry.482859963',    // "Footage Link"
+    };
+
+    document.getElementById('trial-form').addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const btn     = document.getElementById('submit-btn');
+        const btnText = document.getElementById('btn-text');
+        const spinner = document.getElementById('spinner');
+
+        const values = {
+            email:    document.getElementById('f-email').value.trim(),
+            whatsapp: document.getElementById('f-whatsapp').value.trim(),
+            social:   document.getElementById('f-social').value.trim(),
+            project:  document.getElementById('f-project').value.trim(),
+            footage:  document.getElementById('f-footage').value.trim(),
+        };
+
+        if (Object.values(values).some(v => !v)) {
+            alert('Please fill in all fields.');
+            return;
         }
 
-        window.addEventListener('resize', resize);
-        resize();
+        // Loading state
+        btn.disabled = true;
+        btnText.textContent = 'Sending…';
+        spinner.style.display = 'block';
 
-        class Particle {
-            constructor() { this.init(); }
-            init() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 0.5;
-                this.speedX = (Math.random() - 0.5) * 0.3;
-                this.speedY = (Math.random() - 0.5) * 0.3;
-                this.opacity = Math.random() * 0.5 + 0.1;
-            }
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                if (this.x > canvas.width || this.x < 0 || this.y > canvas.height || this.y < 0) this.init();
-            }
-            draw() {
-                ctx.fillStyle = `rgba(255, 78, 0, ${this.opacity})`;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
+        // Build form payload
+        const body = new FormData();
+        Object.entries(FIELDS).forEach(([key, entryId]) => body.append(entryId, values[key]));
+
+        try {
+            await fetch(FORM_URL, { method: 'POST', mode: 'no-cors', body });
+        } catch (err) {
+            // Only fires on a true network failure (offline). CORS errors are swallowed
+            // by no-cors mode and the data still reaches Google.
+            btn.disabled = false;
+            btnText.textContent = 'Send Application';
+            spinner.style.display = 'none';
+            alert('Network error — please check your connection and try again.');
+            return;
         }
 
-        function initParticles() {
-            particles = [];
-            const count = (canvas.width * canvas.height) / 15000;
-            for (let i = 0; i < count; i++) particles.push(new Particle());
-        }
+        // Show success
+        document.getElementById('trial-form').style.display  = 'none';
+        document.getElementById('form-header').style.display = 'none';
+        document.getElementById('success-msg').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => { p.update(); p.draw(); });
-            requestAnimationFrame(animate);
-        }
 
-        initParticles();
-        animate();
-    </script>
+    // ── PARTICLE BACKGROUND ──────────────────────────────────────────────────────
+    const canvas = document.getElementById('hero-canvas');
+    const ctx    = canvas.getContext('2d');
+    let particles = [];
+
+    function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    window.addEventListener('resize', resize);
+    resize();
+
+    class Particle {
+        constructor() { this.init(); }
+        init() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size    = Math.random() * 2 + 0.5;
+            this.speedX  = (Math.random() - 0.5) * 0.3;
+            this.speedY  = (Math.random() - 0.5) * 0.3;
+            this.opacity = Math.random() * 0.5 + 0.1;
+        }
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            if (this.x > canvas.width || this.x < 0 || this.y > canvas.height || this.y < 0) this.init();
+        }
+        draw() {
+            ctx.fillStyle = `rgba(255, 78, 0, ${this.opacity})`;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    function initParticles() {
+        particles = [];
+        const count = (canvas.width * canvas.height) / 15000;
+        for (let i = 0; i < count; i++) particles.push(new Particle());
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => { p.update(); p.draw(); });
+        requestAnimationFrame(animate);
+    }
+
+    initParticles();
+    animate();
+</script>
+
 </body>
 </html>
