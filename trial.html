@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Your Trial | Reel Genius</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #030303;
+            --surface: #0a0a0a;
+            --accent: #ff4e00;
+            --accent-glow: rgba(255, 78, 0, 0.4);
+            --text-main: #ffffff;
+            --text-dim: #888888;
+            --border: rgba(255, 255, 255, 0.1);
+            --input-bg: rgba(255, 255, 255, 0.03);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        #hero-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 25px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border);
+            background: rgba(3, 3, 3, 0.7);
+        }
+
+        .logo {
+            font-weight: 900;
+            font-size: 1.4rem;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo span { color: var(--accent); }
+
+        .container {
+            max-width: 700px;
+            margin: 140px auto 100px;
+            padding: 0 5%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .header-box {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .tag {
+            color: var(--accent);
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            letter-spacing: -2px;
+            line-height: 1.1;
+        }
+
+        .custom-form {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 40px;
+            border-radius: 32px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-dim);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        input, textarea {
+            width: 100%;
+            background: var(--input-bg);
+            border: 1px solid var(--border);
+            padding: 16px 20px;
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        input:focus, textarea:focus {
+            border-color: var(--accent);
+            background: rgba(255, 78, 0, 0.05);
+            box-shadow: 0 0 20px rgba(255, 78, 0, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 20px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 78, 0, 0.3);
+        }
+
+        #success-msg {
+            display: none;
+            text-align: center;
+            padding: 60px 20px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 32px;
+        }
+
+        #success-msg h2 {
+            color: var(--accent);
+            margin-bottom: 15px;
+            font-size: 2rem;
+            font-weight: 900;
+        }
+
+        footer {
+            padding: 60px 6%;
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 0.75rem;
+        }
+
+        @media (max-width: 600px) {
+            .custom-form { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="hero-canvas"></canvas>
+
+    <nav>
+        <a href="index.html" class="logo">REEL<span>GENIUS</span></a>
+    </nav>
+
+    <script>
+        // Global state must be defined early to prevent ReferenceErrors in the iframe
+        var submitted = false;
+
+        function showSuccess() {
+            const form = document.getElementById('trial-form');
+            const header = document.getElementById('form-header');
+            const success = document.getElementById('success-msg');
+            
+            if (form) form.style.display = 'none';
+            if (header) header.style.display = 'none';
+            if (success) success.style.display = 'block';
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+    </script>
+
+    <div class="container">
+        <div class="header-box" id="form-header">
+            <span class="tag">Onboarding</span>
+            <h1>START YOUR TRIAL</h1>
+            <p style="color: var(--text-dim); margin-top: 15px;">Fill out the brief below. Team will contact you within 24 Hours.</p>
+        </div>
+
+        <!-- Silent Submission Handler -->
+        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(typeof submitted !== 'undefined' && submitted) {showSuccess();}"></iframe>
+
+        <form id="trial-form" 
+              class="custom-form" 
+              action="https://docs.google.com/forms/d/e/1FAIpQLSd_sMzmw6yLDzMghe0c5veaEEkB9silpLrvLEJxQwk5nVsIfw/formResponse" 
+              method="post" 
+              target="hidden_iframe" 
+              onsubmit="submitted=true;">
+
+            <!-- Fixed Email Entry ID: entry.398679632 -->
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" name="entry.398679632" placeholder="you@example.com" required>
+            </div>
+
+            <!-- WhatsApp: entry.1691129997 -->
+            <div class="form-group">
+                <label>WhatsApp Number</label>
+                <input type="tel" name="entry.1691129997" placeholder="+1 (555) 000-0000" required>
+            </div>
+
+            <!-- Social Media: entry.1017362031 -->
+            <div class="form-group">
+                <label>Social Media Link (IG/YT/TikTok)</label>
+                <input type="url" name="entry.1017362031" placeholder="https://instagram.com/yourhandle" required>
+            </div>
+
+            <!-- Project Details: entry.1118129033 -->
+            <div class="form-group">
+                <label>Project Details / Reference Style</label>
+                <textarea name="entry.1118129033" placeholder="Describe the style you want (e.g. Hormozi-style, Minimalist, Documentary)..." required></textarea>
+            </div>
+
+            <!-- Footage Link: entry.444265494 -->
+            <div class="form-group">
+                <label>Footage Link (Drive/Dropbox/WeTransfer)</label>
+                <input type="url" name="entry.444265494" placeholder="Link to your raw files" required>
+            </div>
+
+            <button type="submit" class="submit-btn">Send Application</button>
+        </form>
+
+        <div id="success-msg">
+            <div style="background: var(--accent); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 30px;">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+            <h2>Got it!</h2>
+            <p style="color: var(--text-dim); line-height: 1.6; max-width: 400px; margin: 0 auto 30px;">We've received your brief. A lead editor will reach out on WhatsApp shortly to confirm your footage.</p>
+            <a href="index.html" style="display: inline-block; padding: 15px 30px; background: rgba(255,255,255,0.05); color: white; text-decoration: none; border-radius: 12px; font-weight: 700; transition: 0.3s; border: 1px solid var(--border);">Back to Home</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 REEL GENIUS. PREMIUM VIDEO PARTNER.</p>
+    </footer>
+
+    <script>
+        // Particle Background Logic
+        const canvas = document.getElementById('hero-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor() { this.init(); }
+            init() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.3;
+                this.speedY = (Math.random() - 0.5) * 0.3;
+                this.opacity = Math.random() * 0.5 + 0.1;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x > canvas.width || this.x < 0 || this.y > canvas.height || this.y < 0) this.init();
+            }
+            draw() {
+                ctx.fillStyle = `rgba(255, 78, 0, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            const count = (canvas.width * canvas.height) / 15000;
+            for (let i = 0; i < count; i++) particles.push(new Particle());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
+        }
+
+        initParticles();
+        animate();
+    </script>
+</body>
+</html>
